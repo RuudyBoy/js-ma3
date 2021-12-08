@@ -1,9 +1,10 @@
 import { baseUrl } from "./settings/api.js";
+import displayMessage from "./components/displayMessage.js";
 
 const productsUrl = baseUrl + "players";
 
 (async function () {
-    const container = document.querySelector(".container");
+    const container = document.querySelector(".product-container");
 
     try {
         const response = await fetch(productsUrl);
@@ -20,6 +21,10 @@ const productsUrl = baseUrl + "players";
                                     </div>`;
         });
     } catch (error) {
-       
+        console.log(error);
+        displayMessage("error", error, ".product-container");
     }
 })();
+
+
+  
