@@ -17,7 +17,7 @@ function submitForm(event) {
     const passwordValue = password.value.trim();
 
     if (usernameValue.length <= 3|| passwordValue.length <= 3) {
-        return displayMessage("warning", "Invalid values", ".message-container");
+        return displayMessage("warning", "must be more than 3 letters", ".message-container");
     }
 
     doLogin(usernameValue, passwordValue);
