@@ -1,5 +1,5 @@
 import { baseUrl } from "./settings/api.js";
-import displayMessage from "./components/common/displayMessage.js";
+import displayMessage from "./components/displayMessage.js";
 
 const queryString = document.location.search;
 

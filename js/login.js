@@ -1,4 +1,4 @@
-import displayMessage from "./components/common/displayMessage.js";
+import displayMessage from "./components/displayMessage.js";
 import { baseUrl } from "./settings/api.js";
 
 const form = document.querySelector("form");
@@ -16,7 +16,7 @@ function submitForm(event) {
     const usernameValue = username.value.trim();
     const passwordValue = password.value.trim();
 
-    if (usernameValue.length === 0 || passwordValue.length === 0) {
+    if (usernameValue.length <= 3|| passwordValue.length <= 3) {
         return displayMessage("warning", "Invalid values", ".message-container");
     }
 
