@@ -1,6 +1,6 @@
 import { baseUrl } from "./settings/api.js";
 
-const productsUrl = baseUrl + "products";
+const productsUrl = baseUrl + "players";
 
 (async function () {
     const container = document.querySelector(".container");
@@ -14,10 +14,10 @@ const productsUrl = baseUrl + "products";
         container.innerHTML = "";
 
         json.forEach(function (product) {
-            container.innerHTML += `<a class="product" >
-                                        <h4>${product.data[0]}</h4>
-                                        <p>Price: ${product.price}</p>
-                                    </a>`;
+            container.innerHTML += `<div class="product" >
+                                        <h4>${product.data[0].attributes.name}</h4>
+                                        <p>Price: ${product.data[0].id}</p>
+                                    </div>`;
         });
     } catch (error) {
        
