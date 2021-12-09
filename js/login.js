@@ -1,5 +1,6 @@
 import displayMessage from "./components/displayMessage.js";
 import { baseUrl } from "./settings/api.js";
+import { saveToken, saveUser } from "./utils/storage.js";
 
 const form = document.querySelector("form");
 const username = document.querySelector("#username");
@@ -17,7 +18,7 @@ function submitForm(event) {
     const passwordValue = password.value.trim();
 
     if (usernameValue.length <= 3|| passwordValue.length <= 3) {
-        return displayMessage("warning", "invalid values", ".message-container");
+        return displayMessage("warning", "Invalid values", ".message-container");
     }
 
     doLogin(usernameValue, passwordValue);
@@ -25,8 +26,6 @@ function submitForm(event) {
 
 async function doLogin(username, password) {
     const url = baseUrl + "auth/local";
-
-    console.log(url);
 
     const data = JSON.stringify({ identifier: username, password: password });
 
@@ -36,21 +35,27 @@ async function doLogin(username, password) {
         headers: {
             "Content-Type": "application/json",
         },
+        
     };
 
     try {
         const response = await fetch(url, options);
         const json = await response.json();
 
+        console.log(json);
+
         if (json.user) {
-            displayMessage("success", "Successfully logged in", ".message-container");
+            // displayMessage("success", "Successfully logged in", ".message-container");
+
+            saveToken(json.jwt);
+            saveUser(json.user);
+
+            location.href = "/";
         }
 
         if (json.error) {
             displayMessage("warning", "Invalid login details", ".message-container");
         }
-
-        console.log(json);
     } catch (error) {
         console.log(error);
     }
