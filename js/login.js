@@ -17,7 +17,7 @@ function submitForm(event) {
     const passwordValue = password.value.trim();
 
     if (usernameValue.length <= 3|| passwordValue.length <= 3) {
-        return displayMessage("warning", "must be more than 3 letters", ".message-container");
+        return displayMessage("warning", "invalid values", ".message-container");
     }
 
     doLogin(usernameValue, passwordValue);
@@ -25,6 +25,8 @@ function submitForm(event) {
 
 async function doLogin(username, password) {
     const url = baseUrl + "auth/local";
+
+    console.log(url);
 
     const data = JSON.stringify({ identifier: username, password: password });
 
