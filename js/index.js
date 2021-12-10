@@ -12,6 +12,8 @@ const productsUrl = baseUrl + "products";
 
         container.innerHTML = "";
 
+        console.log(json);
+
         json.forEach(function (product) {
             container.innerHTML += `<a class="product">
                                         <h4>hei</h4>
