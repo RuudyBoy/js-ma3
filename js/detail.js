@@ -19,12 +19,16 @@ console.log(productUrl);
     try {
         const response = await fetch(productUrl);
         const details = await response.json();
+        const info = details.data;
 
-        document.title = details.name;
+        console.log(details);
+
+
+        document.title = data.name;
 
         const container = document.querySelector(".detail-container");
 
-        container.innerHTML = `<h1>${details}</h1>`;
+        container.innerHTML = `<h1>${info}</h1>`;
 
         console.log(details);
     } catch (error) {

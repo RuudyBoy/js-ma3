@@ -9,14 +9,17 @@ const productsUrl = baseUrl + "products";
     try {
         const response = await fetch(productsUrl);
         const json = await response.json();
+        const data = json.data;
 
         container.innerHTML = "";
 
-        console.log(json);
+        console.log(data);
 
-        json.forEach(function (product) {
+        data.forEach(function (product) {
             container.innerHTML += `<a class="product">
-                                        <h4>hei</h4>
+                                        <h4> ${product.attributes.name}</h4>
+                                        <p> ${product.attributes.description}</p>
+                                        <h4> ${product.attributes.price}</h4>
                                     </a>`;
         });
     } catch (error) {
